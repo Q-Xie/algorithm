@@ -31,6 +31,19 @@ function HashTable() {
     return hash % 37
   }
 
+  /*
+  * 更好更合理的散列函数
+  *  初始化一个hash变量并赋值为一个质数（5381），然后迭代参数key,将hash与33相乘（用来当作一个魔力数），并和当前迭代到的字符
+  *  的ASCII码值相加。最后我们将使用相加的和与另外一个随机质数相除的余数。
+  * */
+  let djb2HashCode = function (key) {
+    let hash = 5381 // 大多数实现都使用5381
+    for(let i = 0; i < key.length; i++) {
+      hash = hash * 33 + key.charCodeAt(i)
+    }
+    return hash % 1013
+  }
+
 
   this.put = function (key, value) {
     let position = loseloseHashCode(key)
