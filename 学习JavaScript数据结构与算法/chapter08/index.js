@@ -120,15 +120,93 @@ function merge(left, right) {
 * 快速排序也许是最常用的排序算法了，它的复杂度为O(nlog^n)，且它的性能通常比其它的排序算法要好。
 * 跟归并排序一样，快速排序使用的也是分治的方法，将原始数组分成较小的数组。（但并没有像归并排序那样将它们分开）
 * 快速排序的步骤：
-*   首先，从数组中选择中间一项作为主元。
-*   创建两个指针，左边一个指向数组第一项，右边一个指针直到找到一个比主元小的元素，然后交换它们，重复这个过程，直到左指针超过了右指针
+*   1.首先，从数组中选择中间一项作为主元。
+*   2.创建两个指针，左边一个指向数组第一项，右边一个指向数组最后一个项。移动左指针直到我们找到一个比主元大的元素，接着，移动右指针直到找到一个比主元小的元素
+*   然后交换它们，重复这个过程，直到左指针超过了右指针。这个过程将使得比主元小的值都排在主元之前，而比主元大的值都排在主元之后。这一步叫作划分操作。
+*   3.接着，算法对划分后的小数组（较主元小的值组成的子数组，以及较主元大的值组成的子数组）重复之前的两个步骤，直至数组已完全排序。
 * */
 
+console.log(quickSort(arr, 0, arr.length - 1))
+function quickSort(array, left, right) {
+  let index = null
+  if(array.length > 1) {
+    index = partition(array, left, right)
+    if(left < index - 1) {
+      quickSort(array, left, index - 1)
+    }
+    if(index < right) {
+      quickSort(array, index, right)
+    }
+  }
+  return array
+}
 
+function partition(array, left, right) {
+  let pivot = array[Math.floor((right + left) / 2)]
+  let i = left
+  let j = right
 
+  while (i <= j) {
+    while (array[i] < pivot) {
+      i++
+    }
+    while (array[j] > pivot) {
+      j--
+    }
+    if( i <= j) {
+      [array[i], array[j]] = [array[j], array[i]]
+      i++
+      j--
+    }
+  }
+  return i
+}
 
+/*
+* 堆排序
+* 堆排序也是一种很高效的算法，因其把数组当做二叉树来排序而得名。这个算法会根据以下信息，把数组当做二叉树来管理。
+* 1.索引0是树的根节点
+* 2.除根节点外，任意节点N的父节点是N/2
+* 3.节点L的左子节点是2*L
+* 4.节点R的右子节点是2*R+1
+* */
+console.log(heapSort(arr))
+function heapSort(array) {
+  let heapSize = array.length
+  buildHeap(array)
+  while (heapSize > 1) {
+    heapSize--
+    [array[0], array[heapSize]] = [array[heapSize], array[0]]
+    heapify(array, heapSize, 0)
+  }
+  return array
+}
 
+function buildHeap(array) {
+  let heapSize = array.length
+  for(let i = Math.floor(array.length / 2); i >=0; i--){
+    heapify(array, heapSize, i)
+  }
+}
 
+function heapify(array, heapSize, i) {
+  let left = i * 2 + 1
+  let right = i * 2 + 2
+  let largest = i
+
+  if(left < heapSize && array[left] > array[largest]) {
+    largest = left
+  }
+
+  if(right < heapSize && array[right] > array[largest]) {
+    largest = right
+  }
+
+  if(largest !== i) {
+    [array[i], array[largest]] = [array[largest], array[i]]
+    heapify(array, heapSize, largest)
+  }
+}
 
 
 
