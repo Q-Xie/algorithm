@@ -8,5 +8,39 @@
   <script src="stack.js"></script>
   <script src="index.js"></script>
   <script src="divideBy2.js"></script>
+  <script src="class.js"></script>
+  <script src="itclass.js"></script>
+  <script>
+    let book = new Book('title', 'pag', 'isbn')
+    console.log(book.title)
+    book.title = '更新'
+    console.log(book.title)
+
+    let jsBook = new ITBook('学习JS算法', '200', '1234565', 'JS')
+    console.log(jsBook.title)
+    jsBook.printTechnology()
+    jsBook.printIsbn()
+  </script>
+  <script>
+    let str = 'abcddcba'
+    console.log(str.split('').reverse().join('') === str)
+  </script>
+
+  <script>
+    let num = 3000
+    console.log(num.toString(2))
+
+    console.log(decNumber(num))
+    function decNumber(num) {
+      let arr = []
+      let rem = null
+      while (num > 0) {
+        rem = Math.floor(num % 2)
+        arr.unshift(rem)
+        num = Math.floor(num / 2)
+      }
+      return arr.join('')
+    }
+  </script>
 </body>
 </html>

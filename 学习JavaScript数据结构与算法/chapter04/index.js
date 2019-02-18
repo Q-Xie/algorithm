@@ -1,6 +1,6 @@
-let set  = new SetDemo()
+let setDemo  = new SetDemo()
 
-set.add(1)
-console.log(set.values())
-console.log(set.has(1))
-console.log(set.size())
+setDemo.add(1)
+console.log(setDemo.values())
+console.log(setDemo.has(1))
+console.log(setDemo.size())

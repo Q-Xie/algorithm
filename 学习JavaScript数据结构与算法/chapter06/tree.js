@@ -46,6 +46,21 @@ function BinarySearchTree() {
     }
   }
 
+  let preOrderTraverseNode = function (node, callback) {
+    if (node !== null) {
+      callback(node.key)
+      preOrderTraverseNode(node.left, callback)
+      preOrderTraverseNode(node.right, callback)
+    }
+  }
+
+  let postOrderTraverseNode = function (node, callback) {
+    if (node !== null) {
+      postOrderTraverseNode(node.left, callback)
+      postOrderTraverseNode(node.right, callback)
+      callback(node.key)
+    }
+  }
 
   /*
   * 要向树中插入一个新节点，有三个步骤：
@@ -70,6 +85,72 @@ function BinarySearchTree() {
     inOrderTraverseNode(root, callback)
   }
 
+  /*
+  * 先序遍历
+  * 先序遍历是以优于后代节点的顺序访问每个节点的。先序遍历的一种应用是打印一个结构化的文档。
+  * */
+  this.preOrderTraverse = function (callback) {
+    preOrderTraverseNode(root, callback)
+  }
+
+  /*
+  * 后序遍历
+  * 后序遍历则是先访问节点的后代节点，在访问节点本身。后序遍历的一种应用是计算一个目录和它子目录中所有文件所占空间的大小。
+  * */
+  this.postOrderTraverse = function (callback) {
+    postOrderTraverseNode(root, callback)
+  }
+
+  /*
+  * 搜索最小值
+  * */
+  let minNode = function (node) {
+    if (node) {
+      while (node && node.left !== null) {
+        node = node.left
+      }
+      return node.key
+    }
+    return null
+  }
+  this.min = function () {
+    return minNode(root)
+  }
+
+  /*
+  * 搜索最大值
+  * */
+  let maxNode = function (node) {
+    if (node) {
+      while (node && node.right !== null) {
+        node = node.right
+      }
+      return node.key
+    }
+    return null
+  }
+  this.max = function () {
+    return maxNode(root)
+  }
+  /*
+  * 搜索特定值
+  * */
+  let searchNode = function (node, key) {
+    if (node === null) {
+      return false
+    }
+    if(key < node.key) {
+      return searchNode(node.left, key)
+    } else if(key > node.key) {
+      return searchNode(node.right, key)
+    } else {
+      return true
+    }
+  }
+
+  this.search = function (key) {
+    return searchNode(root, key)
+  }
 
 }
 

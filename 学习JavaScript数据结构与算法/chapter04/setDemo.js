@@ -45,7 +45,7 @@ function SetDemo() {
 
   this.values = function () {
     let values = []
-    for(let i = 0; keys = Object.keys(items); i < keys.length; i++) {
+    for(let i = 0, keys = Object.keys(items); i < keys.length; i++) {
       values.push(items[keys[i]])
     }
     return values

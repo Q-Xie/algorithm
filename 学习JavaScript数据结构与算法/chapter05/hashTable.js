@@ -47,7 +47,6 @@ function HashTable() {
 
   this.put = function (key, value) {
     let position = loseloseHashCode(key)
-    console.log(position + '-' + key)
     table[position] = value
   }
 
