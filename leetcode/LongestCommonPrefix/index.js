@@ -1,4 +1,5 @@
 /*
+* 简单
 * 实现一个函数，求字符串数组中，每个字符串中共同的前缀ss
 * */
 function longestCommonPrefix(array) {
