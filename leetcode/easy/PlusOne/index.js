@@ -13,9 +13,7 @@
 * */
 function plusOne(digits) {
   let array = [], add = 0, len = digits.length
-
   digits[len - 1]++
-
   for(let i = len - 1; i >= 0; i--) {
     let sum = digits[i] + add
     array[i] = sum % 10
