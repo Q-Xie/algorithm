@@ -25,5 +25,4 @@ function plusOne(digits) {
   return array
 }
 
-console.log(plusOne([4,3,2,1]))
-
+console.log(plusOne([12,4,3245,356,45675,78]))
